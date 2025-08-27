@@ -18,7 +18,7 @@ describe('new test', () => {
 
 
         //esse processo é pra quando ocorre tudo certo e retorna um GET
-        //caso ocorra um erro no PUT por exemplo precisa mudar o tipo no interceptio ('putFornecedores')
-        // e dar um console.log (no teste de inutilizar_nota tem)
+        //caso ocorra um erro no PUT por exemplo precisa mudar o tipo no intercept para ('putFornecedores')
+        // e dar um console.log (no teste de inutilizar_nota )
     })
 })

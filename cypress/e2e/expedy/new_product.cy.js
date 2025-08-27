@@ -62,10 +62,14 @@ describe('Produtos', () => {
       if ($modal.length) {
         cy.contains('button', 'Criar produto').click();
       }
-    });
+    }); 
     
-    // Geral
+    
     cy.contains('.ant-message-notice-content', 'Produto criado com sucesso, você será redirecionado para a página do produto.', { timeout: 10000 }).should('be.visible'); // Verifica mensagem de sucesso
+    
+    // Preenche os demais campos do produto
+
+    // Geral
     cy.get('#product_form_ean').type('1234567890123'); // Adiciona um código EAN
     cy.get('#product_form_description').type('Descrição do produto teste'); // Adiciona uma descrição
 
