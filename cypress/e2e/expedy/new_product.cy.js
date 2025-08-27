@@ -63,11 +63,35 @@ describe('Produtos', () => {
         cy.contains('button', 'Criar produto').click();
       }
     });
-
+    
+    // Geral
     cy.contains('.ant-message-notice-content', 'Produto criado com sucesso, você será redirecionado para a página do produto.', { timeout: 10000 }).should('be.visible'); // Verifica mensagem de sucesso
+    cy.get('#product_form_ean').type('1234567890123'); // Adiciona um código EAN
+    cy.get('#product_form_description').type('Descrição do produto teste'); // Adiciona uma descrição
 
+    // Tributação
+    cy.get('#product_form_tributacao_substituicaoTributaria > .ant-switch-inner').click(); // Ativa a substituição tributária
+    cy.get('#product_form_tributacao_tax_name').type('ICMS'); // Adiciona o nome do imposto
+    cy.get(':nth-child(4) > :nth-child(1) > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-wrap > .ant-select-selection-search').click();
+    cy.get('[title="02 - Operação Tributável com Alíquota Diferenciada"] > .ant-select-item-option-content').click(); // Seleciona CST PIS
+    cy.get(':nth-child(4) > :nth-child(2) > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-wrap > .ant-select-selection-search').click();
+    cy.get(':nth-child(5) > .ant-select-dropdown > :nth-child(1) > .rc-virtual-list > .rc-virtual-list-holder > [style="height: 352px; position: relative; overflow: hidden;"] > .rc-virtual-list-holder-inner > .ant-select-item-option-active > .ant-select-item-option-content').click(); // Seleciona CST COFINS
+
+    // Características
+    cy.get('#product_form_especie').type('CX'); // Adiciona a espécie
+    
+    // Fornecedor 
+    cy.get('#fornecedor > .ant-card > .ant-card-body > :nth-child(1) > .ant-col-8 > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-wrap > .ant-select-selection-search').click();
+    cy.get('[title="Fornecedor Teste"] > .ant-select-item-option-content').click(); // Seleciona o fornecedor
+    
+
+    // Depósito
+    cy.get(':nth-child(4) > :nth-child(2) > .ant-form-item > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector > .ant-select-selection-wrap > .ant-select-selection-search').click();
+    cy.get('[title="DEP - Depósito teste"] > .ant-select-item-option-content').click(); // Seleciona o depósito
+
+    // cy.get('.ant-row > .ant-btn').click(); // Salva o produto
+    
   });
-
 });
 
 
